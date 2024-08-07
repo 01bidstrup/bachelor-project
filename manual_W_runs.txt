@@ -1,0 +1,94 @@
+Typescheme notation: [].T
+
+VAR ###############################
+EX1
+  TE = {x-> [t1, t2].Int}
+  e = x
+
+  W(TE, e) 
+    let [t1, t2] = TE(x)
+    t3, t4 be new in 
+    (ID, {t1 -> t3, t2 -> t4}(int)) = (ID, int)
+    
+EX2
+  TE = {x-> [t1, t2].(t1 x t2)}
+  e = x
+
+  W(TE, e) 
+    let [t1, t2] = TE(x)
+    t3, t4 be new in 
+    (ID, {t1 -> t3, t2 -> t4}(t1 x t2)) = (ID, (t3 x t4))
+
+
+
+
+
+
+
+
+
+a is y
+b is x
+
+
+W({}, λ a . let f = λb.(b, a) in (f 3, f false))
+// lambda
+alpha = t0
+S1, τ1 = W({a |-> t0}, let f = λb.(b, a) in (f 3, f false))
+    // let
+    S1, τ1 = W({a |-> t0}, λb.(b, a)) // ID, (t1 -> (t1 x t0))
+        // lambda
+        alpha = t1 
+        S1, τ1 = W({a |-> t0; b |-> t1}, (b, a)) // ID, (t1 x t0)
+            //pair
+            S1, τ1 = W({a |-> t0; b |-> t1}, b) // ID, t1
+                // var
+                return ID, t1
+            S2, τ2 = W({a |-> t0; b |-> t1}, a) // ID, t0
+                // var
+                return ID, t0
+            return ID, (t1 x t0) 
+        return ID, (t1 -> (t1 x t0))
+    // calculate Clos S1(TE) τ1
+    // S1(TE) = {a |-> t0}
+    // τ1 = (t1 -> (t1 x t0)) 
+    // tyvars τ1 = t0, t1
+    // tyvars S1(TE) = t0
+    // Clos = ∀t1.(t1 -> (t1 x t0))
+    S2, τ2 = W({a |-> t0; f |->})
+        
+            
+
+
+
+
+
+let f = fn x -> x in (f 3, f true)
+
+0 (let f = fn x -> x in (f 3, f true)) 
+let (S1, a) = W({}, fn x -> x) # t0->t0
+    let t0 be new 
+    (S1, a) = W({}+-{x->t0}, x) # (ID, t0)
+         .t0 = TE(x)
+            [] new
+            return ID, t0
+    return (ID, t0 -> t0)
+(S2, a2) = W(S1({} +- {f -> [t0].t0->t0)}), (f 3, f true))
+    (S1, a) = W({f -> [t0].t0->t0)}, f 3) # {t1->int, t2->int} int
+        (S1, a) = W({f -> [t0].t0->t0)}, f) # ID, t1->t1
+            [t0].t0->t0
+            t1 new 
+            return ID, t1->t1
+
+        ({},int ) = W({f -> [t0].t0->t0)}, 3)
+        t2 new
+        S3 = Unify((t1->t1), int -> t2) # int -> int , {t1->int, t2->int}
+        return {t1->int, t2->int} int, 
+    (S2, b) = W({t1->int, t2->int}({f -> [t0].t0->t0)}), f true)
+
+
+
+
+
+t100 new 
+S3 = Unify(S2(t0))

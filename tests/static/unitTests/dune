@@ -1,0 +1,3 @@
+(library
+ (name unitTests)
+ (libraries ounit2 semant static pretty dynamic))

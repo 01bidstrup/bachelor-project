@@ -1,0 +1,8 @@
+(library
+ (name pretty)
+ (libraries semant))
+
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A))))

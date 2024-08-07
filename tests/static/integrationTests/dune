@@ -1,0 +1,3 @@
+(library
+ (name integrationTests)
+ (libraries ounit2 semant static pretty dynamic qcheck))

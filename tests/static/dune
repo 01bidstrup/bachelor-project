@@ -1,0 +1,8 @@
+(test
+ (name testStatic)
+ (libraries ounit2 unitTests integrationTests))
+
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A))))
