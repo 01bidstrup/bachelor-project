@@ -1,3 +1,10 @@
+
+This is a reupload of the original private gitlab.au repository
+
+Credit
+- Thomas Lyhne Hansen
+- Markus Bidstrup Jakobsen
+
 # bachelor-project
 This is the implementation of the ploymorphic type checker for our bachelors project
 ## Dependencies
